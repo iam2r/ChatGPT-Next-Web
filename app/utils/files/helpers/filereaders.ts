@@ -41,7 +41,7 @@ const readPdfFile = async (file: File | Blob): Promise<string> => {
   const arrayBuffer = await readFileAsArrayBuffer(file);
   const pdfjsLib = await import("pdfjs-dist");
   pdfjsLib.GlobalWorkerOptions.workerSrc = require.resolve(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
+    "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
   );
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
   let textContent = "";
