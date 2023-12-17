@@ -40,9 +40,10 @@ const readExcelFile = async (file: File | Blob): Promise<string> => {
 const readPdfFile = async (file: File | Blob): Promise<string> => {
   const arrayBuffer = await readFileAsArrayBuffer(file);
   const pdfjsLib = await import("pdfjs-dist");
-  pdfjsLib.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
+  pdfjsLib.GlobalWorkerOptions.workerSrc = require.resolve(
+    "pdfjs-dist/build/pdf.worker.min.mjs",
+  );
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-
   let textContent = "";
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);

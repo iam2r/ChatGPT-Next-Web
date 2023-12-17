@@ -528,10 +528,7 @@ ${text}`;
 
   useEffect(() => {
     if (error) {
-      const metrics = {
-        file_type: file?.type || "",
-        file_name: fileName,
-      };
+      console.log("error");
     }
   }, [error]);
 
