@@ -49,7 +49,6 @@ const readPdfFile = async (file: File | Blob): Promise<string> => {
     const text = await page.getTextContent();
     textContent += text.items.map((item: any) => item.str).join(" ");
   }
-
   pdf.destroy();
   return textContent;
 };
