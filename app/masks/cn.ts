@@ -1,6 +1,28 @@
+import { ModelType } from "../store";
 import { BuiltinMask } from "./typing";
 
 export const CN_MASKS: BuiltinMask[] = [
+  {
+    avatar: "razo",
+    name: "Gemini",
+    context: [],
+    modelConfig: {
+      model: "google-gemini" as ModelType,
+      temperature: 0.5,
+      top_p: 1,
+      max_tokens: 10000,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: false,
+      historyMessageCount: 64,
+      compressMessageLengthThreshold: 1000,
+      enableInjectSystemPrompts: false,
+      template: "{{input}}",
+    },
+    lang: "cn",
+    builtin: true,
+    createdAt: 1703084329109,
+  },
   {
     avatar: "1f5bc-fe0f",
     name: "以文搜图",
