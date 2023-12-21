@@ -7,7 +7,7 @@ export const CN_MASKS: BuiltinMask[] = [
     name: "Gemini",
     context: [],
     modelConfig: {
-      model: "google-gemini" as ModelType,
+      model: "gemini-pro" as ModelType,
       temperature: 0.5,
       top_p: 1,
       max_tokens: 10000,
