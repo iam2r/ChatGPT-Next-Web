@@ -1,3 +1,5 @@
+import { createRecognizeClient } from "../recognize";
+const recognizeClient = createRecognizeClient();
 const readFileAsArrayBuffer = (file: File | Blob): Promise<ArrayBuffer> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -54,14 +56,19 @@ const readPdfFile = async (file: File | Blob): Promise<string> => {
 };
 
 const readImageFiles = async (file: File): Promise<string> => {
-  const { createWorker } = await import("tesseract.js");
-  const worker = await createWorker("eng+chi_sim");
-  await worker.load();
-  const {
-    data: { text },
-  } = await worker.recognize(file);
-  await worker.terminate();
-  return text;
+  try {
+    const text = await recognizeClient.images(file);
+    return text;
+  } catch (error) {
+    const { createWorker } = await import("tesseract.js");
+    const worker = await createWorker("eng+chi_sim");
+    await worker.load();
+    const {
+      data: { text },
+    } = await worker.recognize(file);
+    await worker.terminate();
+    return text;
+  }
 };
 
 const readFilesFromZIPFile = async (
@@ -144,6 +151,7 @@ function extractTextFromExcelData(data: any[][]): string {
 }
 
 export {
+  readFileAsArrayBuffer,
   readFilesFromZIPFile,
   readPdfFile,
   readWordFile,
