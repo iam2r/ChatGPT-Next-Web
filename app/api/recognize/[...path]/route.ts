@@ -4,7 +4,7 @@ const handle = async (req: Request) => {
   const formData = await req.formData();
   const { GOOGLE_GEMININ_API_KEY } = getServerSideConfig();
   const headers = new Headers();
-  headers.append("authorization", `Bearer ${GOOGLE_GEMININ_API_KEY}`);
+  headers.append("Authorization", `Bearer ${GOOGLE_GEMININ_API_KEY}`);
   return fetch("https://openai-iamrazo.koyeb.app/recognize", {
     method: "POST",
     body: formData,

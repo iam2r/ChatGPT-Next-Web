@@ -7,15 +7,22 @@ export type RecognizeClient = ReturnType<typeof createRecognizeClient>;
 export function createRecognizeClient() {
   return {
     async images(file: File, prompt: string = "") {
-      const formData = new FormData();
-      formData.append("prompt", prompt);
-      formData.append("file", file);
-      const res = await fetch(this.path("images"), {
-        method: "POST",
-        body: formData,
-      });
-      const json = await res.json();
-      return json.text;
+      try {
+        const formData = new FormData();
+        formData.append("prompt", prompt);
+        formData.append("file", file);
+        const res = await fetch(this.path("images"), {
+          method: "POST",
+          body: formData,
+        });
+        if (!res.ok) {
+          throw new Error();
+        }
+        const json = await res.json();
+        return json.text;
+      } catch (error) {
+        return Promise.reject();
+      }
     },
 
     path(path: string) {
