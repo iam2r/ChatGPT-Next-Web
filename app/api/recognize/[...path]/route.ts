@@ -2,9 +2,9 @@ import { getServerSideConfig } from "@/app/config/server";
 
 const handle = async (req: Request) => {
   const formData = await req.formData();
-  const { GOOGLE_GEMININ_API_KEY } = getServerSideConfig();
+  const { GOOGLE_API_KEY } = getServerSideConfig();
   const headers = new Headers();
-  headers.append("Authorization", `Bearer ${GOOGLE_GEMININ_API_KEY}`);
+  headers.append("Authorization", `Bearer ${GOOGLE_API_KEY}`);
   return fetch("https://openai-iamrazo.koyeb.app/recognize", {
     method: "POST",
     body: formData,

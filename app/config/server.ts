@@ -7,7 +7,6 @@ declare global {
       PROXY_URL?: string; // docker only
 
       OPENAI_API_KEY?: string;
-      GOOGLE_GEMININ_API_KEY?: string;
       CODE?: string;
 
       BASE_URL?: string;
@@ -79,7 +78,7 @@ export const getServerSideConfig = () => {
   return {
     baseUrl: process.env.BASE_URL,
     apiKey,
-    GOOGLE_GEMININ_API_KEY: process.env.GOOGLE_GEMININ_API_KEY,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     openaiOrgId: process.env.OPENAI_ORG_ID,
 
     isAzure,
