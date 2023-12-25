@@ -42,7 +42,11 @@ export function collectModelTable(
           name,
           displayName: displayName || name,
           available,
-          provider: modelTable[name]?.provider, // Use optional chaining
+          provider: modelTable[name]?.provider || {
+            id: "openai",
+            providerName: "OpenAI",
+            providerType: "openai",
+          }, // Use optional chaining
         };
       }
     });
